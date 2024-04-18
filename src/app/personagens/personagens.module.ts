@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonagensComponent } from './personagens.component';
-import { BuscaPersonagensComponent } from './components/search-personagens/busca-personagens.component';
+import { BuscaPersonagensComponent } from './components/busca-personagens/busca-personagens.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ListaPersonangensComponent } from './components/lista-personangens/lista-personangens.component';
