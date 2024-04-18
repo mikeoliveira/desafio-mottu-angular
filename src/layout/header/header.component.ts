@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) {
+  constructor() {
 
   }
+
+  ngOnInit():void {
+  }
+
 
 }

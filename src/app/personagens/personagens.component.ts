@@ -8,15 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./personagens.component.scss']
 })
 export class PersonagensComponent {
-  title = '';
+  titlePage = '';
 
   constructor(
     private router: Router,
   ){
-    console.log(router.url);
+
   }
 
   ngOnInit(): void {
+    this.informaTitulo()
   }
 
+  informaTitulo(){
+    switch (this.router.url) {
+      case '/':
+        this.titlePage = 'Início';
+        break;
+      case '/favoritos':
+        this.titlePage = 'Favoritos';
+        break;
+      default:
+        break;
+    }
+  }
 }

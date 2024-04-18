@@ -1,0 +1,16 @@
+
+.content {
+  width: 100%;
+  min-height: 512px;
+  display: flex;
+}
+
+.bg-black {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  border: 1px solid #3D3D3D;
+  border-radius: 12px;
+}
+
