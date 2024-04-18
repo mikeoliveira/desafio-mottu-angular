@@ -1,0 +1,33 @@
+
+* {
+  color: #FFF
+}
+
+.img-logo {
+  width: 114px;
+}
+
+.mat-toolbar-row-custom {
+  justify-content: space-between;
+}
+
+.btn-home, .btn-favorito {
+  &.mdc-button--outlined, .mdc-button__ripple {
+    border-color: #FFF !important;
+  }
+}
+
+.btn-home {
+  &.mat-mdc-outlined-button {
+    border-radius: 15px 0px 0px 15px!important;
+  }
+}
+
+.btn-favorito {
+  &.mat-mdc-outlined-button {
+    border-radius: 0px 15px 15px 0px!important;
+  }
+}
+
+
+
