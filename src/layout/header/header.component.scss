@@ -15,6 +15,13 @@
   &.mdc-button--outlined, .mdc-button__ripple {
     border-color: #FFF !important;
   }
+  &.is-active {
+    background-color: #FFF;
+    color: #000;
+    mat-icon {
+      color: #000
+    }
+  }
 }
 
 .btn-home {

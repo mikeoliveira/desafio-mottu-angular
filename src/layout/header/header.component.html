@@ -3,15 +3,15 @@
     <span><img src="assets/logo-rick-and-morty.png" class="img-logo" alt=""></span>
     <span>
       <div class="example-button-row">
-        <button mat-stroked-button class="btn-home">
+        <a mat-stroked-button class="btn-home" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="is-active" >
           <mat-icon fontIcon="home"></mat-icon>
           Início
-        </button>
-        <button mat-stroked-button class="btn-favorito">
+        </a>
+        <a mat-stroked-button class="btn-favorito" [routerLink]="['favoritos']" routerLinkActive="is-active">
             <mat-icon fontIcon="favorite"></mat-icon>
             <!-- <mat-icon fontIcon="favorite_border"></mat-icon> -->
             Favorito
-        </button>
+        </a>
       </div>
     </span>
   </mat-toolbar-row>
