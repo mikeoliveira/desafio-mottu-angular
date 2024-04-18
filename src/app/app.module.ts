@@ -9,6 +9,8 @@ import { HeaderComponent } from 'src/layout/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
+import { LocalStorageService } from 'src/core/services/local-storage.service';
+import { CryptoServiceService } from 'src/core/services/crypto-service.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button'
     MatIconModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [LocalStorageService, CryptoServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

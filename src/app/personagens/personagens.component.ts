@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../core/services/local-storage.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,12 +10,13 @@ import { Router } from '@angular/router';
 export class PersonagensComponent {
   title = '';
 
-  constructor(router: Router){
+  constructor(
+    private router: Router,
+  ){
     console.log(router.url);
   }
 
   ngOnInit(): void {
-    console.log('personagem')
-    console.log(this.title)
   }
+
 }
