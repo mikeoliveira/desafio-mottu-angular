@@ -1,4 +1,15 @@
-<div class="content bg-black">
+<div class="content bg-black" *ngIf="!personagens$">
   <h2 class="title-font">lista-personangens works!</h2>
 </div>
+<div class="wrapper-card">
+  <div *ngFor="let row of personagens$ | async; index as i" class="card">
+      <img src="{{ row.image }}" alt="">
+      <div class="legenda-imagem">
+        <p class="title-font">{{ row.name }}</p>
+        <p class="body-font">{{ row.species }}</p>
+        <p class="body-font">{{ row.type }}</p>
+      </div>
+    </div>
+</div>
+
 

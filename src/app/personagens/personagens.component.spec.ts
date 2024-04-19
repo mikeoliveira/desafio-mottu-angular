@@ -4,6 +4,7 @@ import { PersonagensComponent } from './personagens.component';
 import { BuscaPersonagensComponent } from './components/busca-personagens/busca-personagens.component';
 import { PersonagensModule } from './personagens.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PersonagensComponent', () => {
   let component: PersonagensComponent;
@@ -11,7 +12,7 @@ describe('PersonagensComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PersonagensModule, BrowserAnimationsModule],
+      imports: [PersonagensModule, BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [BuscaPersonagensComponent]
     });
     fixture = TestBed.createComponent(PersonagensComponent);

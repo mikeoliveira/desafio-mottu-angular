@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
 import { LocalStorageService } from 'src/core/services/local-storage.service';
 import { CryptoServiceService } from 'src/core/services/crypto-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CryptoServiceService } from 'src/core/services/crypto-service.service';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [LocalStorageService, CryptoServiceService],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ListaPersonangensComponent } from './components/lista-personangens/lista-personangens.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PersonagensRoutingModule } from './personagens-routing.module';
+import { PersonagensService } from './services/personagens.service';
 
 
 
@@ -22,6 +23,9 @@ import { PersonagensRoutingModule } from './personagens-routing.module';
     MatInputModule,
     ReactiveFormsModule,
     PersonagensRoutingModule
+  ],
+  providers: [
+    PersonagensService
   ]
 })
 export class PersonagensModule { }

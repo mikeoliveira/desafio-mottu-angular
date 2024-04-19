@@ -13,4 +13,31 @@
   border: 1px solid #3D3D3D;
   border-radius: 12px;
 }
+.wrapper-card {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .card {
+    background-color: #000;
+    color: #fff;
+    border-radius: 15px;
+    border: 1px solid #3D3D3D;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    max-width: 224px;
+    img {
+      width: 100%;
+      border-top-right-radius: 15px;
+      border-top-left-radius: 15px;
+    }
+    &:nth-child(3n) {
+      margin-right: 0px;
+    }
+    .legenda-imagem {
+      padding: 15px;
+    }
+  }
+}
+
+
 
