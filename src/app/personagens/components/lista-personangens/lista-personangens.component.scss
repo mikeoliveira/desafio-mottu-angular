@@ -40,5 +40,10 @@
   }
 }
 
-
+@media screen and (max-width:600px) {
+  .wrapper-card {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 

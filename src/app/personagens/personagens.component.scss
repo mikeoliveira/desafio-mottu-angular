@@ -33,3 +33,10 @@ lista-personangens {
 
 
 
+@media screen and (max-width: 600px) {
+  .container-title {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
