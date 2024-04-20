@@ -17,7 +17,7 @@ export class ListaPersonangensComponent {
 
   ngOnInit(): void {
     this.personagens$ =  this.personagensService.list().pipe(
-      map((res: any): Result[] => {
+      map((res: IPersonagens): Result[] => {
         return res.results
       })
     )

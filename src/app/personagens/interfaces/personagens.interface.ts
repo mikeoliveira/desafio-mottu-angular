@@ -1,6 +1,6 @@
 export interface IPersonagens {
   info: Info;
-  results: Result[];
+  results: Result[] ;
 }
 export interface Result {
   id: number;
@@ -16,11 +16,11 @@ export interface Result {
   url: string;
   created: string;
 }
-export interface Origin {
+interface Origin {
   name: string;
   url: string;
 }
-export interface Info {
+interface Info {
   count: number;
   pages: number;
   next: string;

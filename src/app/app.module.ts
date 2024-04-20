@@ -21,12 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [LocalStorageService, CryptoServiceService],
   bootstrap: [AppComponent]
