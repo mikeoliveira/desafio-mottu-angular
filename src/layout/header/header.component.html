@@ -3,14 +3,17 @@
     <span><img src="assets/logo-rick-and-morty.png" class="img-logo" alt=""></span>
     <span>
       <div class="example-button-row">
-        <a mat-stroked-button class="btn-home" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="is-active" >
+        <a mat-stroked-button class="btn-home font-bold" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="is-active" >
           <mat-icon fontIcon="home"></mat-icon>
           Início
         </a>
-        <a mat-stroked-button class="btn-favorito" [routerLink]="['favoritos']" routerLinkActive="is-active">
+        <a mat-stroked-button class="btn-favorito font-bold" [routerLink]="['favoritos']" routerLinkActive="is-active">
             <mat-icon fontIcon="favorite"></mat-icon>
             <!-- <mat-icon fontIcon="favorite_border"></mat-icon> -->
             Favorito
+            <span class="badge-favoritos">
+              3
+            </span>
         </a>
       </div>
     </span>

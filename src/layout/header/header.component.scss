@@ -11,14 +11,28 @@
 }
 
 .btn-home, .btn-favorito {
+
+  .badge-favoritos {
+    display: inline;
+    width: 0px;
+    height: 5px;
+    padding: 1px 6px;
+    border-radius: 50%;
+    text-align: center;
+    background: #fff;
+    color: #000;
+  }
+
   &.mdc-button--outlined, .mdc-button__ripple {
-    border-color: #FFF !important;
+    border-color: #A4A4A4 !important;
+    color: #A4A4A4
   }
   &.is-active {
     background-color: #FFF;
-    color: #000;
+    color: #0A0A0A;
+
     mat-icon {
-      color: #000
+      color: #0A0A0A
     }
   }
 }
@@ -35,5 +49,7 @@
   }
 }
 
-
+.mdc-button__label {
+  font-weight: bold;
+}
 
