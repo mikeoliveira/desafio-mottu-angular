@@ -1,6 +1,8 @@
 
+@import './../../styles/_variables';
+
 .mat-toolbar {
-  background: #000
+  background: $color-black;
 }
 .img-logo {
   width: 114px;
@@ -19,24 +21,24 @@
     padding: 1px 6px;
     border-radius: 50%;
     text-align: center;
-    background: #fff;
-    color: #000;
+    background: $color-white;
+    color: $color-black;
   }
 
   &.mdc-button--outlined, .mdc-button__ripple {
-    border-color: #A4A4A4 !important;
-    color: #A4A4A4
+    border-color: $color-btn !important;
+    color: $color-btn
   }
   &.is-active {
     background-color: #FFF;
-    color: #0A0A0A;
+    color: $color-btn-active;
 
     mat-icon {
-      color: #0A0A0A
+      color: $color-btn-active
     }
     .badge-favoritos {
-      background: #000;
-      color: #fff;
+      background: $color-black;;
+      color: $color-white;
     }
   }
 }

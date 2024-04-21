@@ -1,3 +1,4 @@
+@import './../../../../styles/_variables';
 
 .content {
   width: 100%;
@@ -9,9 +10,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  border: 1px solid #3D3D3D;
-  border-radius: 12px;
+  background-color: $color-black;
+  border: 1px solid $color-border-gray;
+  border-radius: $default-border-radius;
 }
 .wrapper-card {
   display:flex;
@@ -19,23 +20,23 @@
   flex-wrap: wrap;
   .card {
     position: relative;
-    background-color: #000;
-    color: #fff;
-    border-radius: 15px;
-    border: 1px solid #3D3D3D;
-    margin-bottom: 15px;
-    margin-right: 15px;
+    background-color: $color-black;
+    color: $color-white;
+    border-radius: $default-border-radius;
+    border: 1px solid $color-border-gray;
+    margin-bottom: $default-space-elements;
+    margin-right: $default-space-elements;
     max-width: 224px;
     img {
       width: 100%;
-      border-top-right-radius: 15px;
-      border-top-left-radius: 15px;
+      border-top-right-radius: $default-border-radius;
+      border-top-left-radius: $default-border-radius;
     }
     &:nth-child(3n) {
       margin-right: 0px;
     }
     .legenda-imagem {
-      padding: 15px;
+      padding: $default-space-elements;
     }
   }
 }
