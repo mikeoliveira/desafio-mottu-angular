@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-
+import * as fromPersonagensAction from './../../../app/store/personagens.action';
+import { Store } from '@ngrx/store';
+import { Result } from 'src/app/personagens/interfaces/personagens.interface';
 @Component({
   selector: 'botao-favoritar',
   templateUrl: './botao-favoritar.component.html',
@@ -7,12 +9,22 @@ import { Component, Input } from '@angular/core';
 })
 export class BotaoFavoritarComponent {
   @Input() isFavorito:boolean = false;
+  @Input() dadosPersonagem!: Result;
+
   iconeFavorito?:string;
+
+  constructor(private store:Store){}
+
   ngOnInit():void {
     this.changeIcon();
   }
 
   toggleFavorito(value:boolean){
+    if(value) {
+      this.store.dispatch(fromPersonagensAction.RemoveFavoritoPersonagens({ payload: this.dadosPersonagem}))
+    }else {
+      this.store.dispatch(fromPersonagensAction.AddFavoritoPersonagens({ payload: this.dadosPersonagem}))
+    }
     this.isFavorito = !value;
     this.changeIcon();
   }
@@ -20,5 +32,4 @@ export class BotaoFavoritarComponent {
   changeIcon(){
     this.iconeFavorito = (this.isFavorito)? 'favorite' : 'favorite_border'
   }
-
 }

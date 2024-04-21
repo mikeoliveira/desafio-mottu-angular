@@ -1,7 +1,9 @@
+import { getListaFavoritosPersonagens } from './../../app/store/personagens.selector';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
-
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import * as fromPersonagensSelector from '../../app/store/personagens.selector';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,11 +11,14 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class HeaderComponent {
 
-  constructor() {
+  count = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
+
+  constructor(private store:Store) {
 
   }
 
   ngOnInit():void {
+    console.log(this.count);
   }
 
 

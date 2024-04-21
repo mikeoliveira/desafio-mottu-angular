@@ -4,13 +4,13 @@ import { IPersonagens, Result } from '../personagens/interfaces/personagens.inte
 import * as fromPersonagensAction from './personagens.action';
 
 export interface IPersonagensState {
-  personagensFavoritos: IPersonagens,
+  personagensFavoritos: Result[],
   personagens: Result[],
   error: string | '';
 }
 
 export const initialState: IPersonagensState = {
-  personagensFavoritos: {} as IPersonagens,
+  personagensFavoritos: [],
   personagens: [],
   error: ''
 }
@@ -36,6 +36,17 @@ const _personangesReducer = createReducer(
   on(fromPersonagensAction.LoadBuscaPersonagensFalha, (state, { error }) => ({
     ...initialState,
     error: error
+  })),
+  on(fromPersonagensAction.AddFavoritoPersonagens, (state, { payload }) => ({
+    ...state,
+    personagensFavoritos: state.personagensFavoritos.concat(payload)
+  })),
+  on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
+  ...state
+  })),
+  on(fromPersonagensAction.RemoveFavoritoPersonagens, (state, { payload}) => ({
+    ...state,
+    personagensFavoritos: state.personagensFavoritos.filter( (personagem) => personagem.id !== payload.id )
   }))
 );
 
