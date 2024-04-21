@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 import * as fromPersonagensAction from '../../../store/personagens.action';
+import { PersonagensPageActions } from '../../../store/personagens.action';
 
 @Component({
   selector: 'input-busca-personagens',
@@ -24,10 +25,10 @@ export class BuscaPersonagensComponent implements OnInit{
       distinctUntilChanged(),
       tap( res => {
         if( res && res?.length > 3) {
-          this.store.dispatch(fromPersonagensAction.LoadBuscaPersonagens({payload: res}))
+          //this.store.dispatch(PersonagensPageActions.loadPersonagens({payload: res}))
         }
         if( res?.length == 0 ) {
-          this.store.dispatch(fromPersonagensAction.LoadPersonagens())
+          this.store.dispatch(PersonagensPageActions.loadPersonagens())
         }
       }))
      .subscribe()

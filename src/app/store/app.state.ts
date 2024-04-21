@@ -1,13 +1,14 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { IPersonagensState, personagensReducer } from './personagens.reducer';
+import { personagensReducer } from './personagens.reducer';
 import { PersonagensEffects } from './personagens.effects';
+import { IPersonagensData } from '../personagens/interfaces/personagens.interface';
 
 export interface AppState {
-  personagensService: IPersonagensState;
+  personagensData: IPersonagensData;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
-  personagensService: personagensReducer
+  personagensData: personagensReducer
 }
 
 export const appEffects = [

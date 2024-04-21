@@ -1,8 +1,18 @@
-export interface IPersonagens {
-  info: Info;
-  results: Result[] ;
+import { HttpErrorResponse } from '@angular/common/http';
+
+export interface IPersonagensData {
+  personagens: IPersonagens[];
+  nextPage : string;
+  previosPage: string;
+  countPage: number;
+  error?: unknown;
 }
-export interface Result {
+
+export interface IReturnAPI {
+  info: Info;
+  results: IPersonagens[] ;
+}
+export interface IPersonagens {
   id: number;
   name: string;
   status: string;
@@ -15,6 +25,7 @@ export interface Result {
   episode: string[];
   url: string;
   created: string;
+  isFavorito: boolean;
 }
 interface Origin {
   name: string;

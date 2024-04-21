@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from './../store/personagens.selector';
 import * as fromPersonagensAction from './../store/personagens.action';
+import { PersonagensPageActions } from './../store/personagens.action';
 
 @Component({
   selector: 'app-personagens',
@@ -23,7 +24,7 @@ export class PersonagensComponent {
   ngOnInit(): void {
     this.informaTitulo();
 
-    this.store.dispatch(fromPersonagensAction.LoadPersonagens())
+    this.store.dispatch(PersonagensPageActions.loadPersonagens())
   }
 
   informaTitulo(){

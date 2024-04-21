@@ -1,55 +1,54 @@
-import { PersonagensService } from './../personagens/services/personagens.service';
 import { Action, createReducer, on } from '@ngrx/store';
-import { IPersonagens, Result } from '../personagens/interfaces/personagens.interface';
+import { IPersonagens, IPersonagensData } from '../personagens/interfaces/personagens.interface';
 import * as fromPersonagensAction from './personagens.action';
+import { PersonagensPageActions } from './personagens.action';
 
-export interface IPersonagensState {
-  personagensFavoritos: Result[],
-  personagens: Result[],
-  error: string | '';
-}
 
-export const initialState: IPersonagensState = {
-  personagensFavoritos: [],
+
+
+export const initialState: IPersonagensData = {
   personagens: [],
+  countPage: 0,
+  nextPage: '',
+  previosPage: '',
   error: ''
 }
 
 const _personangesReducer = createReducer(
   initialState,
-  on(fromPersonagensAction.LoadPersonagensSucesso,(state, { payload }) => ({
+  on(PersonagensPageActions.loadPersonagensSucesso,(state, { payload }) => ({
     ...state,
-    personagensService: payload,
-    personagens: payload.results,
+    personagens: payload.personagens,
+    countPage: payload.countPage,
+    nextPage: payload.nextPage,
+    previosPage: payload.previosPage,
     error: ''
   })),
-  on(fromPersonagensAction.LoadPersonagensFalha, (state, { error }) => ({
+  on(PersonagensPageActions.loadPersonagensFalha, (state, { error }) => ({
     ...initialState,
     error: error
   })),
-  on(fromPersonagensAction.LoadBuscaPersonagensSucesso,(state, {payload}) => ({
-    ...state,
-    personagensService: payload,
-    personagens: payload.results,
-    error: ''
-  })),
-  on(fromPersonagensAction.LoadBuscaPersonagensFalha, (state, { error }) => ({
-    ...initialState,
-    error: error
-  })),
-  on(fromPersonagensAction.AddFavoritoPersonagens, (state, { payload }) => ({
-    ...state,
-    personagensFavoritos: state.personagensFavoritos.concat(payload)
-  })),
-  on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
-  ...state
-  })),
-  on(fromPersonagensAction.RemoveFavoritoPersonagens, (state, { payload}) => ({
-    ...state,
-    personagensFavoritos: state.personagensFavoritos.filter( (personagem) => personagem.id !== payload.id )
-  }))
+  // on(fromPersonagensAction.LoadBuscaPersonagensSucesso,(state, {payload}) => ({
+  //   ...state,
+  //   personagens: payload,
+  //   error: ''
+  // })),
+  // on(fromPersonagensAction.LoadBuscaPersonagensFalha, (state, { error }) => ({
+  //   ...initialState,
+  //   error: error
+  // })),
+  // on(fromPersonagensAction.AddFavoritoPersonagens, (state, { payload }) => ({
+  //   ...state,
+  //   data: state.data.concat(payload),
+  // })),
+  // on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
+  // ...state
+  // })),
+  // on(fromPersonagensAction.RemoveFavoritoPersonagens, (state, { payload }) => ({
+  //   ...state,
+  //   data: state.data.filter( (personagem) => personagem.id !== payload.id ),
+  // }))
 );
-
 
 export function personagensReducer(state = initialState, action: Action){
   return _personangesReducer(state, action);

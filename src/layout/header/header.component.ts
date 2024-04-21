@@ -11,14 +11,14 @@ import * as fromPersonagensSelector from '../../app/store/personagens.selector';
 })
 export class HeaderComponent {
 
-  count = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
+  // count = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
 
   constructor(private store:Store) {
 
   }
 
   ngOnInit():void {
-    console.log(this.count);
+    // console.log(this.count);
   }
 
 
