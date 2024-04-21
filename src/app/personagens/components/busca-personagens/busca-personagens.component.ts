@@ -15,7 +15,6 @@ export class BuscaPersonagensComponent implements OnInit{
   buscaPersonagem = new FormControl('');
 
   constructor(
-    private personagensService:PersonagensService,
     private store: Store
   ){}
 

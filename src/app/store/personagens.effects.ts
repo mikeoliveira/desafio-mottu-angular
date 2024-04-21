@@ -35,9 +35,6 @@ export class PersonagensEffects {
       ),
       exhaustMap((param: string) =>
         this.personagensService.busca(param).pipe(
-          tap(
-            res => console.log(res)
-          ),
           map(
             (payload) =>
               fromPersonagensAction.LoadBuscaPersonagensSucesso({ payload }),
