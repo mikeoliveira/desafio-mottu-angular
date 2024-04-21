@@ -9,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PersonagensRoutingModule } from './personagens-routing.module';
 import { PersonagensService } from './services/personagens.service';
 import { SharedModule } from 'src/shared/shared.module';
-import { BotaoFavoritarComponent } from 'src/shared/components/botao-favoritar/botao-favoritar.component';
 
 
 

@@ -24,7 +24,7 @@ const _personangesReducer = createReducer(
     error: ''
   })),
   on(fromPersonagensAction.LoadPersonagensFalha, (state, { error }) => ({
-    ...state,
+    ...initialState,
     error: error
   })),
   on(fromPersonagensAction.LoadBuscaPersonagensSucesso,(state, {payload}) => ({
@@ -34,9 +34,9 @@ const _personangesReducer = createReducer(
     error: ''
   })),
   on(fromPersonagensAction.LoadBuscaPersonagensFalha, (state, { error }) => ({
-    ...state,
+    ...initialState,
     error: error
-  })),
+  }))
 );
 
 

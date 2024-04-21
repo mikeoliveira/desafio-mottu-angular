@@ -13,7 +13,17 @@
   background-color: $color-black;
   border: 1px solid $color-border-gray;
   border-radius: $default-border-radius;
+  color: $color-white;
+  h2 {
+    margin-bottom: 0px;
+  }
+  p {
+    margin-top: 10px;
+    font-size: 23px;
+    font-weight: 100;
+  }
 }
+
 .wrapper-card {
   display:flex;
   flex-direction: row;

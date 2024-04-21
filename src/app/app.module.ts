@@ -11,11 +11,12 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
 import { LocalStorageService } from 'src/core/services/local-storage.service';
 import { CryptoServiceService } from 'src/core/services/crypto-service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { appEffects, appReducer } from './store/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { InterceptorModule } from 'src/core/interceptors/interceptor.module';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HttpClientModule,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot(appEffects),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    InterceptorModule
   ],
-  providers: [LocalStorageService, CryptoServiceService],
+  providers: [LocalStorageService, CryptoServiceService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

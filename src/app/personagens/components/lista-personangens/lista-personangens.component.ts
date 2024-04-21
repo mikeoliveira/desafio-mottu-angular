@@ -1,10 +1,8 @@
-import { IPersonagensState } from './../../../store/personagens.reducer';
-import { IPersonagens, Result } from './../../interfaces/personagens.interface';
 import { Component } from '@angular/core';
-import { PersonagensService } from '../../services/personagens.service';
 import { Observable, Subject, catchError, map, of, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from '../../../store/personagens.selector';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'lista-personangens',
@@ -19,10 +17,12 @@ export class ListaPersonangensComponent {
   ){ }
 
   ngOnInit(): void {
-    this.personagens$ = this.store.select(fromPersonagensSelector.getPersonagens).pipe(
-      map(
-        (payload: IPersonagensState) => payload.personagens
-      )
-    );
+    this.personagens$ = this.store.select(fromPersonagensSelector.getPersonagens);
   }
+
+
+  errorHandler(error: HttpErrorResponse) {
+
+  }
+
 }

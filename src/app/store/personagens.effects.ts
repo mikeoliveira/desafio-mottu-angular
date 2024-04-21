@@ -19,9 +19,9 @@ export class PersonagensEffects {
           map(
             (payload) =>
               fromPersonagensAction.LoadPersonagensSucesso({ payload }),
-            catchError((error) =>
-              of(fromPersonagensAction.LoadPersonagensFalha({ error }))
-            )
+          ),
+          catchError((error) =>
+            of(fromPersonagensAction.LoadPersonagensFalha({ error }))
           )
         )
       )
@@ -38,9 +38,9 @@ export class PersonagensEffects {
           map(
             (payload) =>
               fromPersonagensAction.LoadBuscaPersonagensSucesso({ payload }),
-            catchError((error) =>
-              of(fromPersonagensAction.LoadBuscaPersonagensFalha({ error }))
-            )
+          ),
+          catchError((error) =>
+            of(fromPersonagensAction.LoadBuscaPersonagensFalha({ error }))
           )
         )
       )

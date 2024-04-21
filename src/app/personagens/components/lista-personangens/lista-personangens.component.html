@@ -1,8 +1,18 @@
-<div class="content bg-black" *ngIf="!personagens$">
-  <h2 class="title-font">lista-personangens works!</h2>
-</div>
-<div class="wrapper-card">
-  <div *ngFor="let row of personagens$ | async; index as i" class="card">
+
+<ng-template #error>
+  <div class="content bg-black" *ngIf="(personagens$ | async).error.status == 404">
+    <h2 class="title-body"> Nada foi encontrado</h2>
+    <p>Tente realizar uma nova busca</p>
+  </div>
+
+  <div class="content bg-black" *ngIf="(personagens$ | async).error.status != 404">
+    <h2 class="title-body"> Erro interno no servidor</h2>
+    <p>Pro favor recarregue a pagina</p>
+  </div>
+</ng-template>
+
+<div class="wrapper-card" *ngIf="(personagens$ | async).personagens.length > 0 else error">
+  <div *ngFor="let row of (personagens$ | async).personagens; index as i" class="card">
       <img src="{{ row.image }}" alt="">
       <div class="legenda-imagem">
         <p class="title-font">{{ row.name }}</p>
