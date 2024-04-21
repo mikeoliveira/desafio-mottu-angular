@@ -1,19 +1,17 @@
-{{ personagensData$ | async | json }}
 
 <!-- <ng-template #error>
-  <div class="content bg-black" *ngIf="(personagensData$ | async).error.status === 404">
+  <div class="content bg-black" *ngIf="(personagensData$ | async)?.error.status === 404">
     <h2 class="title-body"> Nada foi encontrado</h2>
     <p>Tente realizar uma nova busca</p>
   </div>
 
-  <div class="content bg-black" *ngIf="(personagensData$ | async).error.status !== 404">
+  <div class="content bg-black" *ngIf="(personagensData$ | async)?.error.status !== 404">
     <h2 class="title-body"> Erro interno no servidor</h2>
     <p>Pro favor recarregue a pagina</p>
   </div>
-</ng-template>
- -->
+</ng-template> -->
 
-<div class="wrapper-card" *ngIf="(personagensData$ | async).personagens.length > 0 else error">
+<div class="wrapper-card" *ngIf="(personagensData$ | async)!.personagens.length > 0 ">
   <div *ngFor="let row of (personagensData$ | async)?.personagens; index as i" class="card">
       <img src="{{ row.image }}" alt="">
       <div class="legenda-imagem">
