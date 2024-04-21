@@ -1,6 +1,9 @@
 import { LocalStorageService } from './../../core/services/local-storage.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromPersonagensSelector from './../store/personagens.selector';
+import * as fromPersonagensAction from './../store/personagens.action';
 
 @Component({
   selector: 'app-personagens',
@@ -12,12 +15,21 @@ export class PersonagensComponent {
 
   constructor(
     private router: Router,
+    private store: Store
   ){
 
   }
 
   ngOnInit(): void {
-    this.informaTitulo()
+    this.informaTitulo();
+
+    this.store.dispatch(fromPersonagensAction.LoadPersonagens())
+
+    this.store.select(fromPersonagensSelector.getPersonagens).subscribe(
+      response => {
+        console.log('subscribe --> ', response)
+      }
+    )
   }
 
   informaTitulo(){
