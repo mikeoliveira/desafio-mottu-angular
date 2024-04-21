@@ -1,26 +1,52 @@
 import { PersonagensService } from './../personagens/services/personagens.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as fromPersonagensActions from './personagens.action';
+import * as fromPersonagensAction from './personagens.action';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
 @Injectable()
 export class PersonagensEffects {
-  constructor(private action$: Actions, private personagensService:PersonagensService){}
+  constructor(
+    private action$: Actions,
+    private personagensService: PersonagensService
+  ) {}
 
-  LoadPersonagens$ = createEffect(
-    () =>
-      this.action$.pipe(
-        ofType(fromPersonagensActions.PersonagensTypeAction.LOAD_PERSONAGENS),
-        exhaustMap(() => this.personagensService.list()
-        .pipe(
-          tap( res => console.log( 'teste', res )),
-          map(payload =>
-            fromPersonagensActions.LoadPersonagensSucesso({ payload }),
-            catchError(error => of(fromPersonagensActions.LoadPersonagensFalha({ error})))
+  LoadPersonagens$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(fromPersonagensAction.PersonagensTypeAction.LOAD_PERSONAGENS),
+      exhaustMap(() =>
+        this.personagensService.lista().pipe(
+          map(
+            (payload) =>
+              fromPersonagensAction.LoadPersonagensSucesso({ payload }),
+            catchError((error) =>
+              of(fromPersonagensAction.LoadPersonagensFalha({ error }))
+            )
           )
         )
       )
+    )
+  );
+
+  LoadBuscaPersonagens$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(
+        fromPersonagensAction.PersonagensTypeAction.LOAD_BUSCA_PERSONAGENS
+      ),
+      exhaustMap((param: string) =>
+        this.personagensService.busca(param).pipe(
+          tap(
+            res => console.log(res)
+          ),
+          map(
+            (payload) =>
+              fromPersonagensAction.LoadBuscaPersonagensSucesso({ payload }),
+            catchError((error) =>
+              of(fromPersonagensAction.LoadBuscaPersonagensFalha({ error }))
+            )
+          )
+        )
       )
-  )
+    )
+  );
 }

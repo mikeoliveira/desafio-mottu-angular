@@ -11,9 +11,15 @@ export class PersonagensService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<any>{
+  lista(): Observable<any>{
     const params = new HttpParams()
     .set('page',1);
     return this.http.get(this.API_URL, { params });
+  }
+
+  busca(value: any): Observable<any>{
+    const params = new HttpParams()
+    .set('name', value.payload);
+    return this.http.get(this.API_URL, { params })
   }
 }

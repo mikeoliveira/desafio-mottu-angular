@@ -24,12 +24,6 @@ export class PersonagensComponent {
     this.informaTitulo();
 
     this.store.dispatch(fromPersonagensAction.LoadPersonagens())
-
-    this.store.select(fromPersonagensSelector.getPersonagens).subscribe(
-      response => {
-        console.log('subscribe --> ', response)
-      }
-    )
   }
 
   informaTitulo(){
