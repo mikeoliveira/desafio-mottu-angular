@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { LocalStorageService } from 'src/core/services/local-storage.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {PersonagensFavoritosPageActions} from './../../../app/store/personagens.action';
 import { Store } from '@ngrx/store';
 import { IPersonagens } from 'src/app/personagens/interfaces/personagens.interface';
@@ -10,10 +11,13 @@ import { IPersonagens } from 'src/app/personagens/interfaces/personagens.interfa
 export class BotaoFavoritarComponent {
   @Input() isFavorito:boolean = false;
   @Input() dadosPersonagem!: IPersonagens;
+  @Output() informeRemovePersonagem = new EventEmitter<IPersonagens>();
 
   iconeFavorito?:string;
 
-  constructor(private store:Store){}
+  constructor(private store:Store,
+    private localStorageService: LocalStorageService
+  ){}
 
   ngOnInit():void {
     this.changeIcon();
@@ -22,6 +26,7 @@ export class BotaoFavoritarComponent {
   toggleFavorito(value:boolean){
     if(value) {
       this.store.dispatch(PersonagensFavoritosPageActions.removePersonagensFavoritos({ payload: this.dadosPersonagem}))
+      this.removePersonagem(this.dadosPersonagem);
     }else {
       this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({ payload: this.dadosPersonagem}))
     }
@@ -31,5 +36,9 @@ export class BotaoFavoritarComponent {
 
   changeIcon(){
     this.iconeFavorito = (this.isFavorito)? 'favorite' : 'favorite_border'
+  }
+
+  removePersonagem(value:IPersonagens){
+    this.informeRemovePersonagem.emit(value);
   }
 }

@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
+import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
 import { PersonagensFavoritosPageActions, PersonagensPageActions } from './personagens.action';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -55,7 +55,7 @@ const _personangesFavoritosReducer = createReducer(
   })),
   on(PersonagensFavoritosPageActions.addPersonagensFavoritos, (state, { payload }) => ({
     ...state,
-    personagensFavoritos: state.personagensFavoritos.concat(payload),
+    personagensFavoritos: state.personagensFavoritos.concat(payload)
   })),
   // on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
   // ...state
@@ -68,4 +68,12 @@ const _personangesFavoritosReducer = createReducer(
 
 export function personagensFavoritosReducer(state = initialStateFavoritos, action: Action){
   return _personangesFavoritosReducer(state, action);
+}
+
+const validaSeExisteId = (personagens:IPersonagens[], payload: IPersonagens) => {
+   if(personagens.some((personagem) => personagem.id == payload.id)){
+    return personagens.concat(payload)
+   }else {
+    return personagens
+   }
 }

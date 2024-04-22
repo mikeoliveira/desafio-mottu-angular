@@ -10,7 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
 import { LocalStorageService } from 'src/core/services/local-storage.service';
-import { CryptoServiceService } from 'src/core/services/crypto-service.service';
+import { CryptoService } from 'src/core/services/crypto.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { appEffects, appReducer } from './store/app.state';
@@ -36,7 +36,7 @@ import { InterceptorModule } from 'src/core/interceptors/interceptor.module';
     StoreDevtoolsModule.instrument(),
     InterceptorModule
   ],
-  providers: [LocalStorageService, CryptoServiceService,],
+  providers: [LocalStorageService, CryptoService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root'
 })
-export class CryptoServiceService {
+export class CryptoService {
   _key = "secret_key";
   constructor() { }
   encrypt(value: string) {

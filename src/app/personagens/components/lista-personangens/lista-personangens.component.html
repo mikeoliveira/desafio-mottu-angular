@@ -1,18 +1,18 @@
 
 <div class="wrapper-card" *ngIf="contexto === '/' && (personagensComFavoritoData$ | async)!.personagens.length > 0 && !(personagensComFavoritoData$ | async)?.error!.status">
-  <div *ngFor="let row of (personagensComFavoritoData$ | async)!.personagens; index as i" class="card">
+  <div *ngFor="let row of (personagensComFavoritoData$ | async)!.personagens; index as i" class="card" [ngClass]="{'personagem-favorito':row.isFavorito}">
       <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
         <p class="title-font">{{ row.name }}</p>
         <p class="body-font">{{ row.species }}</p>
         <p class="body-font">{{ row.type }}</p>
       </div>
-      <botao-favoritar [dadosPersonagem]="row" [isFavorito]="row.isFavorito"></botao-favoritar>
+      <botao-favoritar [dadosPersonagem]="row" [isFavorito]="row.isFavorito" (informeRemovePersonagem)="validaUltimoPersonagemNoLocalStorage($event)"></botao-favoritar>
     </div>
 </div>
 
 <div class="wrapper-card" *ngIf="contexto === '/favoritos' && (personagensFavoritosData$ | async)!.personagensFavoritos.length > 0 && !(personagensFavoritosData$ | async)?.error?.status">
-  <div *ngFor="let row of (personagensFavoritosData$ | async)?.personagensFavoritos; index as i" class="card">
+  <div *ngFor="let row of (personagensFavoritosData$ | async)?.personagensFavoritos; index as i" class="card personagem-favorito" >
       <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
         <p class="title-font">{{ row.name }}</p>

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListaPersonangensComponent } from './lista-personangens.component';
+import { ListaPersonangensComponent } from './ListaPersonangensComponent';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ListaPersonangensComponent', () => {
