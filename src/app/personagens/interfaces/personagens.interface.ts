@@ -1,11 +1,19 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
+export interface IPersonagensFavoritosData {
+  personagensFavoritos: IPersonagens[];
+  nextPage : string;
+  previosPage: string;
+  countPage: number;
+  error?: HttpErrorResponse | any;
+}
+
 export interface IPersonagensData {
   personagens: IPersonagens[];
   nextPage : string;
   previosPage: string;
   countPage: number;
-  error?: unknown;
+  error?: HttpErrorResponse | any;
 }
 
 export interface IReturnAPI {

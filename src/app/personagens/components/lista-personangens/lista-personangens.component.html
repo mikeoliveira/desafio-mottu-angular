@@ -11,7 +11,7 @@
   </div>
 </ng-template> -->
 
-<div class="wrapper-card" *ngIf="(personagensData$ | async)!.personagens.length > 0 ">
+<div class="wrapper-card" *ngIf="contexto === '/' && (personagensData$ | async)!.personagens.length > 0 && !(personagensData$ | async)?.error!.status">
   <div *ngFor="let row of (personagensData$ | async)?.personagens; index as i" class="card">
       <img src="{{ row.image }}" alt="">
       <div class="legenda-imagem">
@@ -23,4 +23,25 @@
     </div>
 </div>
 
+<div class="wrapper-card" *ngIf="contexto === '/favoritos' && (personagensFavoritosData$ | async)!.personagensFavoritos.length > 0 && !(personagensFavoritosData$ | async)?.error?.status">
+  <div *ngFor="let row of (personagensFavoritosData$ | async)?.personagensFavoritos; index as i" class="card">
+      <img src="{{ row.image }}" alt="">
+      <div class="legenda-imagem">
+        <p class="title-font">{{ row.name }}</p>
+        <p class="body-font">{{ row.species }}</p>
+        <p class="body-font">{{ row.type }}</p>
+      </div>
+      <botao-favoritar [dadosPersonagem]="row" ></botao-favoritar>
+    </div>
+</div>
 
+<div class="content bg-black" *ngIf="contexto === '/' && (personagensData$ | async)?.error?.status === 404">
+  <h2 class="title-body">Nada foi encontrado</h2>
+  <p>Tente realizar uma nova busca</p>
+</div>
+
+<div class="content bg-black" *ngIf="contexto === '/favoritos' && (((personagensFavoritosData$ | async)?.personagensFavoritos)!.length < 1)">
+  <h2 class="title-body">Parece que você ainda não tem favoritos</h2>
+  <p>Volte à página inicial e escolha os melhores para você</p>
+  <a class="btn-default" [routerLink]="['/']">Voltar ao Início</a>
+</div>

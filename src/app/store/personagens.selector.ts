@@ -1,8 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IPersonagensData } from '../personagens/interfaces/personagens.interface';
+import { IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
 
 const getPersonagensFeatureState = createFeatureSelector<IPersonagensData>(
   'personagensData'
+)
+
+const getPersonagensFavoritosFeatureState = createFeatureSelector<IPersonagensFavoritosData>(
+  'personagesFavoritosData'
 )
 
 export const getPersonagens = createSelector(
@@ -11,7 +15,18 @@ export const getPersonagens = createSelector(
 );
 
 export const getListaFavoritosPersonagens = createSelector(
-  getPersonagensFeatureState,
-  (state: IPersonagensData) => {
+  getPersonagensFavoritosFeatureState,
+  (state: IPersonagensFavoritosData) => {
     return state}
 )
+
+export const selectPersonagensFavoritos = createSelector(
+  getPersonagens,
+  getListaFavoritosPersonagens,
+  (personagens, favoritos) => {
+    // return personagens.map((personagem) => {
+    //   ...personagem,
+    //   isFavorito: favoritos.includes(persongem.id)
+    // })
+  }
+);

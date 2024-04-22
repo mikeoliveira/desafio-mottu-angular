@@ -1,14 +1,16 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { personagensReducer } from './personagens.reducer';
+import { personagensFavoritosReducer, personagensReducer } from './personagens.reducer';
 import { PersonagensEffects } from './personagens.effects';
-import { IPersonagensData } from '../personagens/interfaces/personagens.interface';
+import { IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
 
 export interface AppState {
   personagensData: IPersonagensData;
+  personagesFavoritosData: IPersonagensFavoritosData;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
-  personagensData: personagensReducer
+  personagensData: personagensReducer,
+  personagesFavoritosData: personagensFavoritosReducer
 }
 
 export const appEffects = [

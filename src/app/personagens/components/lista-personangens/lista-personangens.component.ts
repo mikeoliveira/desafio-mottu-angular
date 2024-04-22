@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { Observable, Subject, catchError, map, of, tap } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from '../../../store/personagens.selector';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { IPersonagensData } from '../../interfaces/personagens.interface';
+import { IPersonagensData, IPersonagensFavoritosData } from '../../interfaces/personagens.interface';
 
 @Component({
   selector: 'lista-personangens',
@@ -12,20 +11,15 @@ import { IPersonagensData } from '../../interfaces/personagens.interface';
   styleUrls: ['./lista-personangens.component.scss']
 })
 export class ListaPersonangensComponent {
+  @Input() contexto: string = '/';
+
   personagensData$:Observable<IPersonagensData> = this.store.select(fromPersonagensSelector.getPersonagens);
+
+  personagensFavoritosData$:Observable<IPersonagensFavoritosData> = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
 
   constructor(
     private router: Router,
     private store: Store
   ){ }
-
-  ngOnInit(): void {
-  }
-
-
-  errorHandler(error: HttpErrorResponse) {
-
-  }
-
 
 }

@@ -1,21 +1,8 @@
 import { createAction, createActionGroup, emptyProps, props } from '@ngrx/store';
-import { IPersonagens, IPersonagensData } from '../personagens/interfaces/personagens.interface';
+import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export enum PersonagensTypeAction {
-  LOAD_PERSONAGENS = '[LOAD_PERSONAGENS]',
-  LOAD_PERSONAGENS_SUCESSO = '[LOAD_PERSONAGENS_SUCESSO]',
-  LOAD_PERSONAGENS_FALHA = '[LOAD_PERSONAGENS_FALHA]',
-
-  LOAD_BUSCA_PERSONAGENS = '[LOAD_BUSCA_PERSONAGENS]',
-  LOAD_BUSCA_PERSONAGENS_SUCESSO = '[LOAD_BUSCA_PERSONAGENS_SUCESSO]',
-  LOAD_BUSCA_PERSONAGENS_FALHA = '[LOAD_BUSCA_PERSONAGENS_FALHA]',
-
-  NOT_FOUND_PERSONAGENS = '[NOT_FOUND_PERSONAGENS]',
-
-  CLEAR_DATA_PERSONAGENS = '[CLEAR_DATA_PERSONAGENS]',
-  CLEAR_DATA_PERSONAGENS_SUCESSO = '[CLEAR_DATA_PERSONAGENS_SUCESSO]',
-  CLEAR_DATA_PERSONAGENS_FALHA ='[CLEAR_DATA_PERSONAGENS_FALHA]',
-
   LISTA_FAVORITO_PERSONAGENS = '[LISTA_FAVORITO_PERSONAGENS]',
   LISTA_FAVORITO_PERSONAGENS_SUCESSO = '[LISTA_FAVORITO_PERSONAGENS]',
   LISTA_FAVORITO_PERSONAGENS_FALHA = '[LISTA_FAVORITO_PERSONAGENS_FALHA]',
@@ -29,59 +16,26 @@ export enum PersonagensTypeAction {
   REMOVE_FAVORITO_PERSONAGENS_FALHA ='[REMOVE_FAVORITO_PERSONAGENS_FALHA]'
 }
 
-export const LoadPersonagens = createAction(
-  PersonagensTypeAction.LOAD_PERSONAGENS
-);
-
-export const LoadPersonagensSucesso = createAction(
-  PersonagensTypeAction.LOAD_PERSONAGENS_SUCESSO,
-  props<{ payload: IPersonagens}>()
-);
-
-export const LoadPersonagensFalha = createAction(
-  PersonagensTypeAction.LOAD_PERSONAGENS_FALHA,
-  props<{ error: string}>()
-);
-
 export const PersonagensPageActions = createActionGroup({
   source: 'Personagens Page',
   events: {
-    'Load Personagens': emptyProps(),
+    'Load Personagens': props<{ params?: string }>(),
     'Load Personagens Sucesso': props<{ payload: IPersonagensData }>(),
-    'Load Personagens Falha': props<{ error: string }>(),
+    'Load Personagens Falha': props<{ error: HttpErrorResponse }>(),
   }
 })
 
-
-// export const LoadBuscaPersonagens = createAction(
-//   PersonagensTypeAction.LOAD_BUSCA_PERSONAGENS,
-//   props<{ payload: string | null }>()
-// );
-
-// export const LoadBuscaPersonagensSucesso = createAction(
-//   PersonagensTypeAction.LOAD_BUSCA_PERSONAGENS_SUCESSO,
-//   props<{ payload: IPersonagens}>()
-// );
-
-// export const LoadBuscaPersonagensFalha = createAction(
-//   PersonagensTypeAction.LOAD_BUSCA_PERSONAGENS_FALHA,
-//   props<{ error: string}>()
-// );
-
-// export const ClearDataPersonagens = createAction(
-//   PersonagensTypeAction.CLEAR_DATA_PERSONAGENS,
-// );
-
-// export const ClearDataPersonagensSucesso = createAction(
-//   PersonagensTypeAction.CLEAR_DATA_PERSONAGENS_SUCESSO,
-//   props<{ payload: IPersonagens}>()
-// );
-
-// export const ClearDataPersonagensFalha = createAction(
-//   PersonagensTypeAction.CLEAR_DATA_PERSONAGENS_FALHA,
-//   props<{ error: string}>()
-// );
-
+export const PersonagensFavoritosPageActions = createActionGroup({
+  source: 'Personanges Favoritos Page',
+  events: {
+    'Load Personagens Favoritos': emptyProps(),
+    'Load Personagens Favoritos Sucesso': props<{ payload: IPersonagensFavoritosData }>(),
+    'Load Personagens Favoritos Falha': props<{ error:HttpErrorResponse }>(),
+    'Add Personagens Favoritos': props<{ payload: IPersonagens }>(),
+    'Add Personagens Favoritos Sucesso': props<{ payload: IPersonagens }>(),
+    'Add Personagens Favoritos Falha': props<{ error: HttpErrorResponse }>(),
+  }
+})
 
 // export const ListaFavoritoPersonagens = createAction(
 //   PersonagensTypeAction.LISTA_FAVORITO_PERSONAGENS,

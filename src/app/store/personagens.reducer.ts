@@ -1,9 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { IPersonagens, IPersonagensData } from '../personagens/interfaces/personagens.interface';
-import * as fromPersonagensAction from './personagens.action';
-import { PersonagensPageActions } from './personagens.action';
-
-
+import { IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
+import { PersonagensFavoritosPageActions, PersonagensPageActions } from './personagens.action';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 export const initialState: IPersonagensData = {
@@ -11,8 +9,9 @@ export const initialState: IPersonagensData = {
   countPage: 0,
   nextPage: '',
   previosPage: '',
-  error: ''
+  error: {} as HttpErrorResponse
 }
+
 
 const _personangesReducer = createReducer(
   initialState,
@@ -22,25 +21,42 @@ const _personangesReducer = createReducer(
     countPage: payload.countPage,
     nextPage: payload.nextPage,
     previosPage: payload.previosPage,
-    error: ''
+    error: {} as HttpErrorResponse
   })),
-  on(PersonagensPageActions.loadPersonagensFalha, (state, { error }) => ({
+  on(PersonagensPageActions.loadPersonagensFalha, (state,  error  ) => ({
     ...initialState,
     error: error
+  }))
+);
+
+export function personagensReducer(state = initialState, action: Action){
+  return _personangesReducer(state, action);
+}
+
+
+
+export const initialStateFavoritos: IPersonagensFavoritosData = {
+  personagensFavoritos: [],
+  countPage: 0,
+  nextPage: '',
+  previosPage: '',
+  error: {} as HttpErrorResponse
+}
+
+const _personangesFavoritosReducer = createReducer(
+  initialStateFavoritos,
+  on(PersonagensFavoritosPageActions.loadPersonagensFavoritos,(state) => ({
+    ...state,
+    error: {} as HttpErrorResponse
   })),
-  // on(fromPersonagensAction.LoadBuscaPersonagensSucesso,(state, {payload}) => ({
-  //   ...state,
-  //   personagens: payload,
-  //   error: ''
-  // })),
-  // on(fromPersonagensAction.LoadBuscaPersonagensFalha, (state, { error }) => ({
-  //   ...initialState,
-  //   error: error
-  // })),
-  // on(fromPersonagensAction.AddFavoritoPersonagens, (state, { payload }) => ({
-  //   ...state,
-  //   data: state.data.concat(payload),
-  // })),
+  on(PersonagensFavoritosPageActions.loadPersonagensFavoritosFalha, (state, error ) => ({
+    ...initialStateFavoritos,
+    error: error
+  })),
+  on(PersonagensFavoritosPageActions.addPersonagensFavoritos, (state, { payload }) => ({
+    ...state,
+    personagensFavoritos: state.personagensFavoritos.concat(payload),
+  })),
   // on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
   // ...state
   // })),
@@ -50,6 +66,6 @@ const _personangesReducer = createReducer(
   // }))
 );
 
-export function personagensReducer(state = initialState, action: Action){
-  return _personangesReducer(state, action);
+export function personagensFavoritosReducer(state = initialStateFavoritos, action: Action){
+  return _personangesFavoritosReducer(state, action);
 }

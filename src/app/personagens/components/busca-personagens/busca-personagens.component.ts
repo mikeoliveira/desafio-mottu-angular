@@ -25,10 +25,10 @@ export class BuscaPersonagensComponent implements OnInit{
       distinctUntilChanged(),
       tap( res => {
         if( res && res?.length > 3) {
-          //this.store.dispatch(PersonagensPageActions.loadPersonagens({payload: res}))
+          this.store.dispatch(PersonagensPageActions.loadPersonagens({ params: res}))
         }
         if( res?.length == 0 ) {
-          this.store.dispatch(PersonagensPageActions.loadPersonagens())
+          this.store.dispatch(PersonagensPageActions.loadPersonagens({}))
         }
       }))
      .subscribe()

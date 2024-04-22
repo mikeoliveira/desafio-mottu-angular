@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import * as fromPersonagensAction from './../../../app/store/personagens.action';
+import {PersonagensFavoritosPageActions} from './../../../app/store/personagens.action';
 import { Store } from '@ngrx/store';
 import { IPersonagens } from 'src/app/personagens/interfaces/personagens.interface';
 @Component({
@@ -20,11 +20,11 @@ export class BotaoFavoritarComponent {
   }
 
   toggleFavorito(value:boolean){
-    // if(value) {
-    //   this.store.dispatch(fromPersonagensAction.RemoveFavoritoPersonagens({ payload: this.dadosPersonagem}))
-    // }else {
-    //   this.store.dispatch(fromPersonagensAction.AddFavoritoPersonagens({ payload: this.dadosPersonagem}))
-    // }
+    if(value) {
+      //this.store.dispatch(fromPersonagensAction.RemoveFavoritoPersonagens({ payload: this.dadosPersonagem}))
+    }else {
+      this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({ payload: this.dadosPersonagem}))
+    }
     this.isFavorito = !value;
     this.changeIcon();
   }
