@@ -29,8 +29,6 @@ export class BotaoFavoritarComponent {
     this.changeIcon();
   }
 
-
-
   changeIcon(){
     this.iconeFavorito = (this.isFavorito)? 'favorite' : 'favorite_border'
   }
