@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from './../store/personagens.selector';
-import * as fromPersonagensAction from './../store/personagens.action';
 import { PersonagensPageActions } from './../store/personagens.action';
 
 @Component({
@@ -27,6 +26,7 @@ export class PersonagensComponent {
     this.informaTitulo();
 
     this.store.dispatch(PersonagensPageActions.loadPersonagens({}))
+
   }
 
   informaTitulo(){

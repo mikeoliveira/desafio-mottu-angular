@@ -24,11 +24,14 @@ export const selectPersonagensFavoritos = createSelector(
   getPersonagens,
   getListaFavoritosPersonagens,
   (personagens, favoritos) => {
-    return personagens.personagens.map((personagem:IPersonagens) => {
+    const newListPersonagens: IPersonagens[] = [];
+    personagens.personagens.map((personagem:IPersonagens) => {
       personagem = {
         ...personagem,
         isFavorito: favoritos.personagensFavoritos.includes(personagem)
-    }
+      }
+      newListPersonagens.push(personagem)
     })
+    return newListPersonagens;
   }
 );

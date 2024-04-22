@@ -19,13 +19,14 @@ export class BotaoFavoritarComponent {
     this.changeIcon();
   }
 
-  toggleFavorito(value:boolean){
-    if(value) {
+  toggleFavorito(){
+    console.log('toggleFavorito', this.isFavorito);
+    if(this.isFavorito) {
       this.store.dispatch(PersonagensFavoritosPageActions.removePersonagensFavoritos({ payload: this.dadosPersonagem}))
     }else {
       this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({ payload: this.dadosPersonagem}))
     }
-    this.isFavorito = !value;
+    this.isFavorito = !this.isFavorito;
     this.changeIcon();
   }
 

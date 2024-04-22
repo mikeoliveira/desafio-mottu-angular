@@ -12,26 +12,27 @@
 </ng-template> -->
 
 <div class="wrapper-card" *ngIf="contexto === '/' && (personagensData$ | async)!.personagens.length > 0 && !(personagensData$ | async)?.error!.status">
-  <div *ngFor="let row of (personagensData$ | async)?.personagens; index as i" class="card">
-      <img src="{{ row.image }}" alt="">
+  <div *ngFor="let row of (personagensData$ | async)!.personagens; index as i" class="card">
+      <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
         <p class="title-font">{{ row.name }}</p>
         <p class="body-font">{{ row.species }}</p>
         <p class="body-font">{{ row.type }}</p>
       </div>
-      <botao-favoritar [dadosPersonagem]="row" ></botao-favoritar>
+      {{ row.isFavorito }}
+      <botao-favoritar [dadosPersonagem]="row" [isFavorito]="row.isFavorito"></botao-favoritar>
     </div>
 </div>
 
 <div class="wrapper-card" *ngIf="contexto === '/favoritos' && (personagensFavoritosData$ | async)!.personagensFavoritos.length > 0 && !(personagensFavoritosData$ | async)?.error?.status">
   <div *ngFor="let row of (personagensFavoritosData$ | async)?.personagensFavoritos; index as i" class="card">
-      <img src="{{ row.image }}" alt="">
+      <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
         <p class="title-font">{{ row.name }}</p>
         <p class="body-font">{{ row.species }}</p>
         <p class="body-font">{{ row.type }}</p>
       </div>
-      <botao-favoritar [dadosPersonagem]="row" ></botao-favoritar>
+      <botao-favoritar [dadosPersonagem]="row" [isFavorito]="true"></botao-favoritar>
     </div>
 </div>
 

@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from '../../../store/personagens.selector';
 import { Router } from '@angular/router';
-import { IPersonagensData, IPersonagensFavoritosData } from '../../interfaces/personagens.interface';
+import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../../interfaces/personagens.interface';
 
 @Component({
   selector: 'lista-personangens',
@@ -17,9 +17,14 @@ export class ListaPersonangensComponent {
 
   personagensFavoritosData$:Observable<IPersonagensFavoritosData> = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
 
+  listaFavoritos$:Observable<IPersonagens[]> = this.store.select(fromPersonagensSelector.selectPersonagensFavoritos)
+
   constructor(
     private router: Router,
     private store: Store
-  ){ }
+  ){
+
+  }
+
 
 }
