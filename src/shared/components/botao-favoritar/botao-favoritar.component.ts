@@ -19,16 +19,17 @@ export class BotaoFavoritarComponent {
     this.changeIcon();
   }
 
-  toggleFavorito(){
-    console.log('toggleFavorito', this.isFavorito);
-    if(this.isFavorito) {
+  toggleFavorito(value:boolean){
+    if(value) {
       this.store.dispatch(PersonagensFavoritosPageActions.removePersonagensFavoritos({ payload: this.dadosPersonagem}))
     }else {
       this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({ payload: this.dadosPersonagem}))
     }
-    this.isFavorito = !this.isFavorito;
+    this.isFavorito = !value;
     this.changeIcon();
   }
+
+
 
   changeIcon(){
     this.iconeFavorito = (this.isFavorito)? 'favorite' : 'favorite_border'

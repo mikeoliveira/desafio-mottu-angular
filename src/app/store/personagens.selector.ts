@@ -16,22 +16,26 @@ export const getPersonagens = createSelector(
 
 export const getListaFavoritosPersonagens = createSelector(
   getPersonagensFavoritosFeatureState,
-  (state: IPersonagensFavoritosData) => {
-    return state}
+  (state: IPersonagensFavoritosData) =>  state
 )
 
 export const selectPersonagensFavoritos = createSelector(
   getPersonagens,
   getListaFavoritosPersonagens,
-  (personagens, favoritos) => {
-    const newListPersonagens: IPersonagens[] = [];
-    personagens.personagens.map((personagem:IPersonagens) => {
-      personagem = {
+  ({ personagens, countPage, nextPage, previosPage, error }, { personagensFavoritos }) => {
+    const personagensComFavoritos = personagens.map((personagem: IPersonagens) => {
+      const isFavorito = personagensFavoritos.some(favorito => favorito.id === personagem.id)
+      return personagem = {
         ...personagem,
-        isFavorito: favoritos.personagensFavoritos.includes(personagem)
+        isFavorito: isFavorito
       }
-      newListPersonagens.push(personagem)
     })
-    return newListPersonagens;
+    return {
+      personagens: personagensComFavoritos,
+      countPage,
+      nextPage,
+      previosPage,
+      error,
+    }
   }
 );

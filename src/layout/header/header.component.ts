@@ -18,7 +18,6 @@ export class HeaderComponent {
   }
 
   ngOnInit():void {
-    console.log(this.count);
   }
 
 

@@ -17,7 +17,7 @@ export class ListaPersonangensComponent {
 
   personagensFavoritosData$:Observable<IPersonagensFavoritosData> = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
 
-  listaFavoritos$:Observable<IPersonagens[]> = this.store.select(fromPersonagensSelector.selectPersonagensFavoritos)
+  personagensComFavoritoData$:Observable<IPersonagensData> = this.store.select(fromPersonagensSelector.selectPersonagensFavoritos)
 
   constructor(
     private router: Router,

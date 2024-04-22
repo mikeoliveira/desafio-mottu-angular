@@ -1,25 +1,12 @@
 
-<!-- <ng-template #error>
-  <div class="content bg-black" *ngIf="(personagensData$ | async)?.error.status === 404">
-    <h2 class="title-body"> Nada foi encontrado</h2>
-    <p>Tente realizar uma nova busca</p>
-  </div>
-
-  <div class="content bg-black" *ngIf="(personagensData$ | async)?.error.status !== 404">
-    <h2 class="title-body"> Erro interno no servidor</h2>
-    <p>Pro favor recarregue a pagina</p>
-  </div>
-</ng-template> -->
-
-<div class="wrapper-card" *ngIf="contexto === '/' && (personagensData$ | async)!.personagens.length > 0 && !(personagensData$ | async)?.error!.status">
-  <div *ngFor="let row of (personagensData$ | async)!.personagens; index as i" class="card">
+<div class="wrapper-card" *ngIf="contexto === '/' && (personagensComFavoritoData$ | async)!.personagens.length > 0 && !(personagensComFavoritoData$ | async)?.error!.status">
+  <div *ngFor="let row of (personagensComFavoritoData$ | async)!.personagens; index as i" class="card">
       <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
         <p class="title-font">{{ row.name }}</p>
         <p class="body-font">{{ row.species }}</p>
         <p class="body-font">{{ row.type }}</p>
       </div>
-      {{ row.isFavorito }}
       <botao-favoritar [dadosPersonagem]="row" [isFavorito]="row.isFavorito"></botao-favoritar>
     </div>
 </div>
