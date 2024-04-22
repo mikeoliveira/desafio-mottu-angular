@@ -21,7 +21,7 @@ export class BotaoFavoritarComponent {
 
   toggleFavorito(value:boolean){
     if(value) {
-      //this.store.dispatch(fromPersonagensAction.RemoveFavoritoPersonagens({ payload: this.dadosPersonagem}))
+      this.store.dispatch(PersonagensFavoritosPageActions.removePersonagensFavoritos({ payload: this.dadosPersonagem}))
     }else {
       this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({ payload: this.dadosPersonagem}))
     }

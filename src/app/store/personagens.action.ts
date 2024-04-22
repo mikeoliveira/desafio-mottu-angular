@@ -34,6 +34,9 @@ export const PersonagensFavoritosPageActions = createActionGroup({
     'Add Personagens Favoritos': props<{ payload: IPersonagens }>(),
     'Add Personagens Favoritos Sucesso': props<{ payload: IPersonagens }>(),
     'Add Personagens Favoritos Falha': props<{ error: HttpErrorResponse }>(),
+    'Remove Personagens Favoritos': props<{ payload: IPersonagens }>(),
+    'Remove Personagens Favoritos Sucesso': props<{ payload: IPersonagens }>(),
+    'Remove Personagens Favoritos Falha': props<{ error: HttpErrorResponse }>(),
   }
 })
 

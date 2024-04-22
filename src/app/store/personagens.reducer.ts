@@ -60,10 +60,10 @@ const _personangesFavoritosReducer = createReducer(
   // on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
   // ...state
   // })),
-  // on(fromPersonagensAction.RemoveFavoritoPersonagens, (state, { payload }) => ({
-  //   ...state,
-  //   data: state.data.filter( (personagem) => personagem.id !== payload.id ),
-  // }))
+  on(PersonagensFavoritosPageActions.removePersonagensFavoritos, (state, { payload }) => ({
+    ...state,
+    personagensFavoritos: state.personagensFavoritos.filter( (personagem) => personagem.id !== payload.id ),
+  }))
 );
 
 export function personagensFavoritosReducer(state = initialStateFavoritos, action: Action){
