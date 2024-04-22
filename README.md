@@ -1,27 +1,35 @@
 # DesafioMottuAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
+## Instruções para rodar o projeto
+Para rodar o projeto basta utilizar o `npm run start`
 
-## Development server
+O projeto esta disponível no GitPages ➡️ [Clique aqui](https://mikeoliveira.github.io/desafio-mottu-angular/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para publicar no Git Pages por agilidade optamos por utilizar o CI/CD atráves do monitoramento da pasta `\docs` onde era gerado o build do projeto e o git apos o push realizava a construção da aplicação.
 
-## Code scaffolding
+Para controlar a Busca de personagens e Adiciona-los ao Favoritos - Foi utilizado NgRx.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para evitar perder os dados a cada F5, foi salvo em localstorage💾 as informações - realizando um Encript 🔐 das informações.
 
-## Build
+A Aplicação se encontra responsiva.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Será possível encontrar as comunicações de `@Input e @Output e EventEmitter` no elemento `shared\botao-favoritar.component.ts`
 
-## Running unit tests
+Os arquivos de estilos possuem a importação de `_variable.scss` e algumas propridades de estilo do proprio Angular Material foram reescritas.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Foi Aplicado Lazyload para o carregamento do modulo `personagens-routing.module.ts`
 
-## Running end-to-end tests
+Boa parte da aplicação esta tipada corretamente.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Sobre a Busca do Personagem
 
-## Further help
+A busca ocorre apartir do 3 digito.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Quando o valor do form de input é alterado e diferente do valor anterior digitado e um delay de 300ms para realizar a requisição
+
+
+
+
+
+
+
