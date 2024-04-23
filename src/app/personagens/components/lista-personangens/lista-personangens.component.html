@@ -1,5 +1,5 @@
 
-<paginacao
+<paginacao *ngIf="contexto === '/' && (personagensComFavoritoData$ | async)!.personagens.length > 0 && !(personagensComFavoritoData$ | async)?.error!.status"
 [totalDePaginas]="(personagensComFavoritoData$ | async)!.countPage"
 [urlProximaPagina]="(personagensComFavoritoData$ | async)!.nextPage"
 [urlPaginaAnterior]="(personagensComFavoritoData$ | async)!.previosPage">
