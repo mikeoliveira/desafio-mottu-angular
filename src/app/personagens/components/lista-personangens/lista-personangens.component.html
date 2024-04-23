@@ -1,11 +1,11 @@
 
-<paginacao *ngIf="contexto === '/' && (personagensComFavoritoData$ | async)!.personagens.length > 0 && !(personagensComFavoritoData$ | async)?.error!.status"
+<paginacao *ngIf="validaElementoASerExibido('/', (personagensComFavoritoData$ | async)!.personagens.length, (personagensComFavoritoData$ | async)?.error!.status)"
 [totalDePaginas]="(personagensComFavoritoData$ | async)!.countPage"
 [urlProximaPagina]="(personagensComFavoritoData$ | async)!.nextPage"
 [urlPaginaAnterior]="(personagensComFavoritoData$ | async)!.previosPage">
 </paginacao>
 
-<div class="wrapper-card" *ngIf="contexto === '/' && (personagensComFavoritoData$ | async)!.personagens.length > 0 && !(personagensComFavoritoData$ | async)?.error!.status">
+<div class="wrapper-card" *ngIf="validaElementoASerExibido('/', (personagensComFavoritoData$ | async)!.personagens.length, (personagensComFavoritoData$ | async)?.error!.status)">
   <div *ngFor="let row of (personagensComFavoritoData$ | async)!.personagens; index as i" class="card" [ngClass]="{'personagem-favorito':row.isFavorito}">
       <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div class="wrapper-card" *ngIf="contexto === '/favoritos' && (personagensFavoritosData$ | async)!.personagensFavoritos.length > 0 && !(personagensFavoritosData$ | async)?.error?.status">
+<div class="wrapper-card" *ngIf="validaElementoASerExibido('/favoritos', (personagensFavoritosData$ | async)!.personagensFavoritos.length, (personagensFavoritosData$ | async)?.error?.status)">
   <div *ngFor="let row of (personagensFavoritosData$ | async)?.personagensFavoritos; index as i" class="card personagem-favorito" >
       <img src="{{ row.image }}" alt="{{ row.name }}">
       <div class="legenda-imagem">
@@ -25,16 +25,16 @@
         <p class="body-font">{{ row.species }}</p>
         <p class="body-font">{{ row.type }}</p>
       </div>
-      <botao-favoritar [dadosPersonagem]="row" [isFavorito]="true"></botao-favoritar>
+      <botao-favoritar [dadosPersonagem]="row" [isFavorito]="true"  (informeRemovePersonagem)="validaUltimoPersonagemNoLocalStorage($event)"></botao-favoritar>
     </div>
 </div>
 
-<div class="content bg-black" *ngIf="contexto === '/' && (personagensData$ | async)?.error?.status === 404">
+<div class="content bg-black" *ngIf="validaElementoASerExibido('erro-404', 0, (personagensComFavoritoData$ | async)?.error!.status)">
   <h2 class="title-body">Nada foi encontrado</h2>
   <p>Tente realizar uma nova busca</p>
 </div>
 
-<div class="content bg-black" *ngIf="contexto === '/favoritos' && (((personagensFavoritosData$ | async)?.personagensFavoritos)!.length < 1)">
+<div class="content bg-black" *ngIf="validaElementoASerExibido('sem-favorito',((personagensFavoritosData$ | async)?.personagensFavoritos)!.length, 0)">
   <h2 class="title-body">Parece que você ainda não tem favoritos</h2>
   <p>Volte à página inicial e escolha os melhores para você</p>
   <a class="btn-default" [routerLink]="['/']">Voltar ao Início</a>

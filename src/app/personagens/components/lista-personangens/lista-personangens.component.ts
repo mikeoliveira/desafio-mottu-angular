@@ -1,12 +1,10 @@
-import { PersonagensService } from './../../services/personagens.service';
 import { LocalStorageService } from './../../../../core/services/local-storage.service';
 import { Component, Input, Output } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from '../../../store/personagens.selector';
-import { Router } from '@angular/router';
 import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../../interfaces/personagens.interface';
-import { PersonagensFavoritosPageActions, PersonagensPageActions } from 'src/app/store/personagens.action';
+import { PersonagensFavoritosPageActions } from 'src/app/store/personagens.action';
 
 @Component({
   selector: 'lista-personangens',
@@ -72,6 +70,17 @@ export class ListaPersonangensComponent {
     ).subscribe();
   }
 
+  validaElementoASerExibido(condicao: string,qtdPersonagens: number, error:number|null){
 
+    let exibiElementos: any =
+    {
+      '/favoritos': this.contexto === '/favoritos' && qtdPersonagens > 0 && !error,
+      '/' : this.contexto === '/' && qtdPersonagens > 0 && !error,
+      'erro-404': this.contexto === '/' && error === 404,
+      'sem-favorito': this.contexto === '/favoritos' && qtdPersonagens < 1
+    }
+
+    return(exibiElementos[condicao]);
+  }
 
 }

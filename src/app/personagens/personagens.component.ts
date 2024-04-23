@@ -30,15 +30,13 @@ export class PersonagensComponent {
   }
 
   informaTitulo(){
-    switch (this.router.url) {
-      case '/':
-        this.titlePage = 'Início';
-        break;
-      case '/favoritos':
-        this.titlePage = 'Favoritos';
-        break;
-      default:
-        break;
+
+    let exibiTitulo : any = {
+      '/': 'Início',
+      '/favoritos': 'Favoritos'
     }
+
+    this.titlePage = exibiTitulo[this.router.url];
+
   }
 }
