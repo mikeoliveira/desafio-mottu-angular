@@ -26,6 +26,18 @@ const _personangesReducer = createReducer(
   on(PersonagensPageActions.loadPersonagensFalha, (state,  error  ) => ({
     ...initialState,
     error: error
+  })),
+  on(PersonagensPageActions.loadPagesPersonagensSucesso,(state, { payload }) => ({
+    ...state,
+    personagens: payload.personagens,
+    countPage: payload.countPage,
+    nextPage: payload.nextPage,
+    previosPage: payload.previosPage,
+    error: {} as HttpErrorResponse
+  })),
+  on(PersonagensPageActions.loadPagesPersonagensFalha, (state,  error  ) => ({
+    ...initialState,
+    error: error
   }))
 );
 
@@ -57,9 +69,6 @@ const _personangesFavoritosReducer = createReducer(
     ...state,
     personagensFavoritos: state.personagensFavoritos.concat(payload)
   })),
-  // on(fromPersonagensAction.ListaFavoritoPersonagens, (state) => ({
-  // ...state
-  // })),
   on(PersonagensFavoritosPageActions.removePersonagensFavoritos, (state, { payload }) => ({
     ...state,
     personagensFavoritos: state.personagensFavoritos.filter( (personagem) => personagem.id !== payload.id ),

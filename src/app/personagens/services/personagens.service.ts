@@ -12,7 +12,7 @@ export class PersonagensService {
 
   constructor(private http: HttpClient) { }
 
-  busca( value:any ): Observable<IPersonagensData>{
+  busca( value:any): Observable<IPersonagensData>{
     let params = new HttpParams();
     if(value.params) {
       params = params.set('name', value.params);
@@ -20,6 +20,19 @@ export class PersonagensService {
       params = params.set('page',1);
     }
     return this.http.get<IReturnAPI>(this.API_URL, { params }).pipe(
+      map((response: IReturnAPI ):IPersonagensData => ({
+        personagens : response.results,
+        nextPage : response.info.next,
+        previosPage: response.info.prev,
+        countPage: response.info.count,
+        error: {} as HttpErrorResponse
+      }))
+    );
+  }
+
+  navigatePages( params:any ): Observable<IPersonagensData>{
+    console.log(params);
+    return this.http.get<IReturnAPI>(params.params).pipe(
       map((response: IReturnAPI ):IPersonagensData => ({
         personagens : response.results,
         nextPage : response.info.next,

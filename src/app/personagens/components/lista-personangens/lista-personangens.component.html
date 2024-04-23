@@ -1,4 +1,10 @@
 
+<paginacao
+[totalDePaginas]="(personagensComFavoritoData$ | async)!.countPage"
+[urlProximaPagina]="(personagensComFavoritoData$ | async)!.nextPage"
+[urlPaginaAnterior]="(personagensComFavoritoData$ | async)!.previosPage">
+</paginacao>
+
 <div class="wrapper-card" *ngIf="contexto === '/' && (personagensComFavoritoData$ | async)!.personagens.length > 0 && !(personagensComFavoritoData$ | async)?.error!.status">
   <div *ngFor="let row of (personagensComFavoritoData$ | async)!.personagens; index as i" class="card" [ngClass]="{'personagem-favorito':row.isFavorito}">
       <img src="{{ row.image }}" alt="{{ row.name }}">

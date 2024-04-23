@@ -23,10 +23,28 @@ export class PersonagensEffects {
               {
                 return PersonagensPageActions.loadPersonagensSucesso({ payload })
               }
-
           ),
           catchError((error: HttpErrorResponse) =>
             of(PersonagensPageActions.loadPersonagensFalha(error))
+          )
+        )
+      )
+    )
+  );
+
+  LoadPagesPersonagens$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(PersonagensPageActions.loadPagesPersonagens),
+      switchMap(( params ) =>
+        this.personagensService.navigatePages( params).pipe(
+          map(
+            (payload) =>
+              {
+                return PersonagensPageActions.loadPagesPersonagensSucesso({ payload })
+              }
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(PersonagensPageActions.loadPagesPersonagensFalha(error))
           )
         )
       )

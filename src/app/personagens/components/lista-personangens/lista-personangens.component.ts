@@ -1,3 +1,4 @@
+import { PersonagensService } from './../../services/personagens.service';
 import { LocalStorageService } from './../../../../core/services/local-storage.service';
 import { Component, Input, Output } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
@@ -25,7 +26,7 @@ export class ListaPersonangensComponent {
 
   constructor(
     private store: Store,
-    private localStorageService:LocalStorageService
+    private localStorageService:LocalStorageService,
   ){
     this.subscrition = Subscription.EMPTY;
   }
@@ -70,4 +71,7 @@ export class ListaPersonangensComponent {
       )
     ).subscribe();
   }
+
+
+
 }
