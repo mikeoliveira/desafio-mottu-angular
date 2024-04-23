@@ -16,7 +16,7 @@ export class ListaPersonangensComponent {
 
 
   private subscrition: Subscription;
-  personagensData$:Observable<IPersonagensData> = this.store.select(fromPersonagensSelector.getPersonagens);
+  // personagensData$:Observable<IPersonagensData> = this.store.select(fromPersonagensSelector.getPersonagens);
 
   personagensFavoritosData$:Observable<IPersonagensFavoritosData> = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
 
@@ -54,7 +54,7 @@ export class ListaPersonangensComponent {
    let personagensFavoritosLocalstorage:IPersonagens[] = this.localStorageService.getItem('listaPersonagensFavoritos') as IPersonagens[];
    if(personagensFavoritosLocalstorage && !flagStopLocalstorage) {
      personagensFavoritosLocalstorage.forEach((element:IPersonagens) => {
-       this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({payload : element}))
+      //  this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({payload : element}))
      });
    }
   }
@@ -69,9 +69,9 @@ export class ListaPersonangensComponent {
       )
     ).subscribe();
   }
-
+  count = 1;
   validaElementoASerExibido(condicao: string,qtdPersonagens: number, error:number|null){
-
+    console.log('validaElementoASerExibido -->', this.count++, 'qual contexto --> ', condicao);
     let exibiElementos: any =
     {
       '/favoritos': this.contexto === '/favoritos' && qtdPersonagens > 0 && !error,
