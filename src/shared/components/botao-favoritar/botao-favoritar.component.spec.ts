@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BotaoFavoritarComponent } from './botao-favoritar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from 'src/app/store/app.state';
 
 describe('BotaoFavoritarComponent', () => {
   let component: BotaoFavoritarComponent;
@@ -9,7 +11,7 @@ describe('BotaoFavoritarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule],
+      imports: [MatIconModule, StoreModule.forRoot(appReducer)],
       declarations: [BotaoFavoritarComponent]
     });
     fixture = TestBed.createComponent(BotaoFavoritarComponent);

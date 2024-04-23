@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListaPersonangensComponent } from './ListaPersonangensComponent';
+import { ListaPersonangensComponent } from './lista-personangens.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from 'src/app/store/app.state';
 
 describe('ListaPersonangensComponent', () => {
   let component: ListaPersonangensComponent;
@@ -10,7 +12,8 @@ describe('ListaPersonangensComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        StoreModule.forRoot(appReducer)
       ],
       declarations: [ListaPersonangensComponent]
     });
