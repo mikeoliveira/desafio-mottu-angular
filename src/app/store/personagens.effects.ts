@@ -3,7 +3,7 @@ import { PersonagensService } from './../personagens/services/personagens.servic
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of, switchMap, tap } from 'rxjs';
-import { PersonagensPageActions } from './personagens.action';
+import { PersonagensPaginasActions } from './personagens.action';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
@@ -15,17 +15,17 @@ export class PersonagensEffects {
 
   LoadPersonagens$ = createEffect(() =>
     this.action$.pipe(
-      ofType(PersonagensPageActions.loadPersonagens),
+      ofType(PersonagensPaginasActions.carregaPersonagens),
       switchMap(( params ) =>
         this.personagensService.busca( params).pipe(
           map(
             (payload) =>
               {
-                return PersonagensPageActions.loadPersonagensSucesso({ payload })
+                return PersonagensPaginasActions.carregaPersonagensSucesso({ payload })
               }
           ),
           catchError((error: HttpErrorResponse) =>
-            of(PersonagensPageActions.loadPersonagensFalha(error))
+            of(PersonagensPaginasActions.carregaPersonagensFalha(error))
           )
         )
       )
@@ -34,17 +34,17 @@ export class PersonagensEffects {
 
   LoadPagesPersonagens$ = createEffect(() =>
     this.action$.pipe(
-      ofType(PersonagensPageActions.loadPagesPersonagens),
+      ofType(PersonagensPaginasActions.carregaPaginasPersonagens),
       switchMap(( params ) =>
         this.personagensService.navigatePages( params).pipe(
           map(
             (payload) =>
               {
-                return PersonagensPageActions.loadPagesPersonagensSucesso({ payload })
+                return PersonagensPaginasActions.carregaPaginasPersonagensSucesso({ payload })
               }
           ),
           catchError((error: HttpErrorResponse) =>
-            of(PersonagensPageActions.loadPagesPersonagensFalha(error))
+            of(PersonagensPaginasActions.carregaPaginasPersonagensFalha(error))
           )
         )
       )

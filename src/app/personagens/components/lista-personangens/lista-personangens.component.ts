@@ -3,7 +3,7 @@ import { Component, Input, Output } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromPersonagensSelector from '../../../store/personagens.selector';
-import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../../interfaces/personagens.interface';
+import { IPersonagens, IPersonagensDados, IPersonagensFavoritosDados } from '../../interfaces/personagens.interface';
 import { PersonagensFavoritosPageActions } from 'src/app/store/personagens.action';
 
 @Component({
@@ -16,11 +16,11 @@ export class ListaPersonangensComponent {
 
 
   private subscrition: Subscription;
-  // personagensData$:Observable<IPersonagensData> = this.store.select(fromPersonagensSelector.getPersonagens);
+  // personagensData$:Observable<IPersonagensDados> = this.store.select(fromPersonagensSelector.getPersonagens);
 
-  personagensFavoritosData$:Observable<IPersonagensFavoritosData> = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
+  personagensFavoritosData$:Observable<IPersonagensFavoritosDados> = this.store.select(fromPersonagensSelector.getListaFavoritosPersonagens);
 
-  personagensComFavoritoData$:Observable<IPersonagensData> = this.store.select(fromPersonagensSelector.selectPersonagensFavoritos)
+  personagensComFavoritoData$:Observable<IPersonagensDados> = this.store.select(fromPersonagensSelector.selectPersonagensFavoritos)
 
   constructor(
     private store: Store,
@@ -54,7 +54,7 @@ export class ListaPersonangensComponent {
    let personagensFavoritosLocalstorage:IPersonagens[] = this.localStorageService.getItem('listaPersonagensFavoritos') as IPersonagens[];
    if(personagensFavoritosLocalstorage && !flagStopLocalstorage) {
      personagensFavoritosLocalstorage.forEach((element:IPersonagens) => {
-      //  this.store.dispatch(PersonagensFavoritosPageActions.addPersonagensFavoritos({payload : element}))
+        this.store.dispatch(PersonagensFavoritosPageActions.adicionaPersonagensFavoritos({payload : element}))
      });
    }
   }
@@ -71,7 +71,8 @@ export class ListaPersonangensComponent {
   }
   count = 1;
   validaElementoASerExibido(condicao: string,qtdPersonagens: number, error:number|null){
-    console.log('validaElementoASerExibido -->', this.count++, 'qual contexto --> ', condicao);
+    //console.log('validaElementoASerExibido -->', this.count++, 'qual contexto --> ', condicao);
+
     let exibiElementos: any =
     {
       '/favoritos': this.contexto === '/favoritos' && qtdPersonagens > 0 && !error,
@@ -83,4 +84,11 @@ export class ListaPersonangensComponent {
     return(exibiElementos[condicao]);
   }
 
+}
+
+enum paginas {
+  FAVORITOS = '/favoritos',
+  PRINCIPAL = '/' ,
+  NAO_ENCONTRADO = 'erro-404',
+  SEM_FAVORITOS = 'sem-favorito',
 }

@@ -2,7 +2,7 @@ import { environment } from './../../../environments/environments';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
-import { IPersonagensData, IReturnAPI } from '../interfaces/personagens.interface';
+import { IPersonagensDados, IReturnAPI } from '../interfaces/personagens.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class PersonagensService {
 
   constructor(private http: HttpClient) { }
 
-  busca( value:any): Observable<IPersonagensData>{
+  busca( value:any): Observable<IPersonagensDados>{
     let params = new HttpParams();
     if(value.params) {
       params = params.set('name', value.params);
@@ -20,7 +20,7 @@ export class PersonagensService {
       params = params.set('page',1);
     }
     return this.http.get<IReturnAPI>(this.API_URL, { params }).pipe(
-      map((response: IReturnAPI ):IPersonagensData => ({
+      map((response: IReturnAPI ):IPersonagensDados => ({
         personagens : response.results,
         nextPage : response.info.next,
         previosPage: response.info.prev,
@@ -30,10 +30,10 @@ export class PersonagensService {
     );
   }
 
-  navigatePages( params:any ): Observable<IPersonagensData>{
+  navigatePages( params:any ): Observable<IPersonagensDados>{
     console.log(params);
     return this.http.get<IReturnAPI>(params.params).pipe(
-      map((response: IReturnAPI ):IPersonagensData => ({
+      map((response: IReturnAPI ):IPersonagensDados => ({
         personagens : response.results,
         nextPage : response.info.next,
         previosPage: response.info.prev,

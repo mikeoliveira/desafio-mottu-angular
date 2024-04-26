@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
-export interface IPersonagensFavoritosData {
+export interface IPersonagensFavoritosDados {
   personagensFavoritos: IPersonagens[];
   nextPage : string;
   previosPage: string;
@@ -8,7 +8,7 @@ export interface IPersonagensFavoritosData {
   error?: HttpErrorResponse | any;
 }
 
-export interface IPersonagensData {
+export interface IPersonagensDados {
   personagens: IPersonagens[];
   nextPage : string;
   previosPage: string;

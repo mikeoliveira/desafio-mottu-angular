@@ -1,10 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
-import { PersonagensFavoritosPageActions, PersonagensPageActions } from './personagens.action';
+import { IPersonagens, IPersonagensDados, IPersonagensFavoritosDados } from '../personagens/interfaces/personagens.interface';
+import { PersonagensFavoritosPageActions, PersonagensPaginasActions } from './personagens.action';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
-export const initialState: IPersonagensData = {
+export const initialState: IPersonagensDados = {
   personagens: [],
   countPage: 0,
   nextPage: '',
@@ -15,7 +15,7 @@ export const initialState: IPersonagensData = {
 
 const _personangesReducer = createReducer(
   initialState,
-  on(PersonagensPageActions.loadPersonagensSucesso,(state, { payload }) => ({
+  on(PersonagensPaginasActions.carregaPersonagensSucesso,(state, { payload }) => ({
     ...state,
     personagens: payload.personagens,
     countPage: payload.countPage,
@@ -23,11 +23,11 @@ const _personangesReducer = createReducer(
     previosPage: payload.previosPage,
     error: {} as HttpErrorResponse
   })),
-  on(PersonagensPageActions.loadPersonagensFalha, (state,  error  ) => ({
+  on(PersonagensPaginasActions.carregaPersonagensFalha, (state,  error  ) => ({
     ...initialState,
     error: error
   })),
-  on(PersonagensPageActions.loadPagesPersonagensSucesso,(state, { payload }) => ({
+  on(PersonagensPaginasActions.carregaPaginasPersonagensSucesso,(state, { payload }) => ({
     ...state,
     personagens: payload.personagens,
     countPage: payload.countPage,
@@ -35,7 +35,7 @@ const _personangesReducer = createReducer(
     previosPage: payload.previosPage,
     error: {} as HttpErrorResponse
   })),
-  on(PersonagensPageActions.loadPagesPersonagensFalha, (state,  error  ) => ({
+  on(PersonagensPaginasActions.carregaPaginasPersonagensFalha, (state,  error  ) => ({
     ...initialState,
     error: error
   }))
@@ -47,7 +47,7 @@ export function personagensReducer(state = initialState, action: Action){
 
 
 
-export const initialStateFavoritos: IPersonagensFavoritosData = {
+export const initialStateFavoritos: IPersonagensFavoritosDados = {
   personagensFavoritos: [],
   countPage: 0,
   nextPage: '',
@@ -57,15 +57,15 @@ export const initialStateFavoritos: IPersonagensFavoritosData = {
 
 const _personangesFavoritosReducer = createReducer(
   initialStateFavoritos,
-  on(PersonagensFavoritosPageActions.loadPersonagensFavoritos,(state) => ({
+  on(PersonagensFavoritosPageActions.carregaPersonagensFavoritos,(state) => ({
     ...state,
     error: {} as HttpErrorResponse
   })),
-  on(PersonagensFavoritosPageActions.loadPersonagensFavoritosFalha, (state, error ) => ({
+  on(PersonagensFavoritosPageActions.carregaPersonagensFavoritosFalha, (state, error ) => ({
     ...initialStateFavoritos,
     error: error
   })),
-  on(PersonagensFavoritosPageActions.addPersonagensFavoritos, (state, { payload }) => ({
+  on(PersonagensFavoritosPageActions.adicionaPersonagensFavoritos, (state, { payload }) => ({
     ...state,
     personagensFavoritos: state.personagensFavoritos.concat(payload)
   })),

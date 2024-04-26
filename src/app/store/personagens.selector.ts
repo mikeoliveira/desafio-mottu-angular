@@ -1,21 +1,21 @@
 import { Store, createFeatureSelector, createSelector } from '@ngrx/store';
-import { IPersonagens, IPersonagensData, IPersonagensFavoritosData } from '../personagens/interfaces/personagens.interface';
+import { IPersonagens, IPersonagensDados, IPersonagensFavoritosDados } from '../personagens/interfaces/personagens.interface';
 import { LocalStorageService } from 'src/core/services/local-storage.service';
 import { CryptoService } from 'src/core/services/crypto.service';
 import { PersonagensFavoritosPageActions } from './personagens.action';
 import { appReducer } from './app.state';
 
-const getPersonagensFeatureState = createFeatureSelector<IPersonagensData>(
+const getPersonagensFeatureState = createFeatureSelector<IPersonagensDados>(
   'personagensData'
 )
 
-const getPersonagensFavoritosFeatureState = createFeatureSelector<IPersonagensFavoritosData>(
+const getPersonagensFavoritosFeatureState = createFeatureSelector<IPersonagensFavoritosDados>(
   'personagesFavoritosData'
 )
 
 export const getPersonagens = createSelector(
   getPersonagensFeatureState,
-  (state: IPersonagensData) => state
+  (state: IPersonagensDados) => state
 );
 
 const cryptoService = new CryptoService();
@@ -23,7 +23,7 @@ const service = new LocalStorageService(cryptoService);
 
 export const getListaFavoritosPersonagens = createSelector(
   getPersonagensFavoritosFeatureState,
-  (state: IPersonagensFavoritosData) =>
+  (state: IPersonagensFavoritosDados) =>
     {
       if(state.personagensFavoritos.length > 0) {
         service.setItem('listaPersonagensFavoritos', state.personagensFavoritos);
