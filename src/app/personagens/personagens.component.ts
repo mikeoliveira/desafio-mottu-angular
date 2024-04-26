@@ -1,8 +1,6 @@
-import { LocalStorageService } from './../../core/services/local-storage.service';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as fromPersonagensSelector from './../store/personagens.selector';
 import { PersonagensPaginasActions } from './../store/personagens.action';
 
 @Component({

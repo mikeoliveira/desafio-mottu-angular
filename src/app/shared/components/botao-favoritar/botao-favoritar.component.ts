@@ -1,6 +1,6 @@
-import { LocalStorageService } from 'src/core/services/local-storage.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {PersonagensFavoritosPageActions} from './../../../app/store/personagens.action';
+import {PersonagensFavoritosPageActions} from 'src/app/store/personagens.action';
 import { Store } from '@ngrx/store';
 import { IPersonagens } from 'src/app/personagens/interfaces/personagens.interface';
 @Component({

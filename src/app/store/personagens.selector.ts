@@ -1,9 +1,7 @@
 import { Store, createFeatureSelector, createSelector } from '@ngrx/store';
 import { IPersonagens, IPersonagensDados, IPersonagensFavoritosDados } from '../personagens/interfaces/personagens.interface';
-import { LocalStorageService } from 'src/core/services/local-storage.service';
-import { CryptoService } from 'src/core/services/crypto.service';
-import { PersonagensFavoritosPageActions } from './personagens.action';
-import { appReducer } from './app.state';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { CryptoService } from 'src/app/core/services/crypto.service';
 
 const getPersonagensFeatureState = createFeatureSelector<IPersonagensDados>(
   'personagensData'

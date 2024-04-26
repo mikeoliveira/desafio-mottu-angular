@@ -1,4 +1,4 @@
-import { LocalStorageService } from './../../../../core/services/local-storage.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Component, Input, Output } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';

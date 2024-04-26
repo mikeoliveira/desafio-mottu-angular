@@ -1,4 +1,3 @@
-import { LocalStorageService } from 'src/core/services/local-storage.service';
 import { PersonagensService } from './../personagens/services/personagens.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
