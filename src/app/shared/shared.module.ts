@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BotaoFavoritarComponent } from './components/botao-favoritar/botao-favoritar.component';
+import { FavoriteButtonComponent } from './components/button/favorite-button/favorite-button.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PaginacaoComponent } from './components/paginacao/paginacao.component';
 
 @NgModule({
   declarations: [
-    BotaoFavoritarComponent,
+    FavoriteButtonComponent,
     PaginacaoComponent
   ],
   imports: [
@@ -14,7 +14,7 @@ import { PaginacaoComponent } from './components/paginacao/paginacao.component';
     MatIconModule,
   ],
   exports: [
-    BotaoFavoritarComponent,
+    FavoriteButtonComponent,
     PaginacaoComponent
   ]
 })

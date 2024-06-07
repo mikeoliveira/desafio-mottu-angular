@@ -4,20 +4,18 @@ import {PersonagensFavoritosPageActions} from 'src/app/store/personagens.action'
 import { Store } from '@ngrx/store';
 import { IPersonagens } from 'src/app/personagens/interfaces/personagens.interface';
 @Component({
-  selector: 'botao-favoritar',
-  templateUrl: './botao-favoritar.component.html',
-  styleUrls: ['./botao-favoritar.component.scss']
+  selector: 'favorite-button',
+  templateUrl: './favorite-button.component.html',
+  styleUrls: ['./favorite-button.component.scss']
 })
-export class BotaoFavoritarComponent {
+export class FavoriteButtonComponent {
   @Input() isFavorito:boolean = false;
   @Input() dadosPersonagem!: IPersonagens;
   @Output() informeRemovePersonagem = new EventEmitter<IPersonagens>();
 
   iconeFavorito?:string;
 
-  constructor(private store:Store,
-    private localStorageService: LocalStorageService
-  ){}
+  constructor(private store:Store){}
 
   ngOnInit():void {
     this.changeIcon();

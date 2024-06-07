@@ -1,3 +1,4 @@
+import { TrackByFacadeService } from './../../../core/facade/track-by-facade.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Component, Input, Output } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
@@ -25,9 +26,12 @@ export class ListaPersonangensComponent {
   constructor(
     private store: Store,
     private localStorageService:LocalStorageService,
+    private trackByFacadeService: TrackByFacadeService
   ){
     this.subscrition = Subscription.EMPTY;
   }
+
+  trackById = this.trackByFacadeService.trackById;
 
   ngOnInit(){
     this.controlaDadosNoLocalStorage();
